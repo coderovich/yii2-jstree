@@ -49,11 +49,40 @@ public function actions() {
 				# Autoload items before this node level
 				"maxDepth"   => function ( $node ) {
 					/** @var \app\models\TreeModel $node */
-					return $node->depth = 2;
+					return $node->depth = 1;
 				}
 			],
 		];
 	}
 ```
 
+Добавляем в представление
+===
+```php
+use coderovich\jsTree\JsTree;
+
+echo JsTree::widget([
+    'modelClass' => '\app\models\TreeModel',
+    'core'    => [
+    "themes" => [ "stripes" => true ],
+    ],
+    'contextmenu' => [
+    "items_top"=>new \yii\web\JsExpression( '{"assoc": {
+    "separator_before": false,
+    "separator_after": false,
+    "label": "My Label",
+    "title": "My Label",
+    "_disabled":function(){
+    return node.text.match(/disable_me_by_some_js_behavior_if_needed/i);
+    },
+    "action": function (obj) {
+    window.location = "'.\yii\helpers\Url::to(['update']).'?id="+node.id
+    }
+    }}' )
+    ],
+    
+    'plugins' => [ "changed", "state", 'types', 'dnd', 'contextmenu', 'sort' ,'wholerow'],
+    //...
+    ]); 
+```
 
