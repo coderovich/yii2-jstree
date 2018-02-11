@@ -72,7 +72,7 @@ class FetchTreeAction extends BaseAction {
 		foreach ( $children as $n => $node ) {
 			$items[ $n ]['id']       = $node->getPrimaryKey();
 			$items[ $n ]['text']     = $node->{$this->_model::NODE_NAME};
-			$items[ $n ]['children'] = is_callable($this->maxDepth)?call_user_func($this->maxDepth,$node):($node->depth < $this->maxDepth ?: false);
+			$items[ $n ]['children'] = is_callable($this->maxDepth)?call_user_func($this->maxDepth,$node):($node->depth < $this->maxDepth || !$this->maxDepth ?: false);
 		}
 
 		return $items;

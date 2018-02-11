@@ -15,7 +15,7 @@ https://github.com/paulzi/yii2-nested-sets
 
 https://github.com/paulzi/yii2-nested-intervals
 
-How to use this ext
+How to use this extension
 ==
 
 Добавляем в модель
@@ -51,7 +51,8 @@ public function actions() {
         'fetchTree'  => [
             'class'      => 'coderovich\jsTree\actions\FetchTreeAction',
             'modelClass' => $modelClass,
-            # Autoload items before this node level
+            # Максимально возможное число уровней в дереве. Опционально.
+            # Может быть callable или просто быть числом, если известно максимальное число уровней  
             "maxDepth"   => function ( $node ) {
                 /** @var \app\models\TreeModel $node */
                 return $node->depth = 1;
