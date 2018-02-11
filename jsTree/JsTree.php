@@ -181,6 +181,15 @@ class JsTree extends Widget {
     })(window.jQuery, window, document);
 SCRIPT;
 		$view->registerJs( $js );
+
+        $css =
+            <<<SCRIPT
+.jstree-contextmenu {
+ z-index:999;
+}
+SCRIPT;
+        $view->registerCss( $css );
+
 	}
 
 	public function renderButtons() {
