@@ -18,9 +18,16 @@ https://github.com/paulzi/yii2-nested-intervals
 How to use this extension
 ==
 
-Добавляем в контроллер
-===
+Добавляем в модель
+```php
+const NODE_NAME = "nodeName";
+# Your custom item renderer, named like get+self::NODE_NAME
+public function getNodeName() {
+		return "<strong>" . $this->name . "</strong>";
+	}
+```
 
+Добавляем в контроллер
 ```php
 public function actions() {
 		$modelClass = 'app\models\TreeModel';
@@ -56,7 +63,6 @@ public function actions() {
 ```
 
 Добавляем в представление
-===
 ```php
 use coderovich\jsTree\JsTree;
 
