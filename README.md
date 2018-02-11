@@ -2,14 +2,12 @@
 
 Виджет для управления деревом.
 
-Have to add this into Controller
+Добавляем в контроллер
 ===
-
-
 
 ```php
 public function actions() {
-		$modelClass = 'app\models\TreeClass';
+		$modelClass = 'app\models\TreeModel';
 
 		return [
 			'moveNode'   => [
@@ -31,9 +29,10 @@ public function actions() {
 			'fetchTree'  => [
 				'class'      => 'coderovich\jsTree\actions\FetchTreeAction',
 				'modelClass' => $modelClass,
+				# Autoload items before this node level
 				"maxDepth"   => function ( $node ) {
-					/** @var \backend\models\AutoList $node */
-					return $node->group_name != AutoList::GROUP_MODIFICATION;
+					/** @var \app\models\TreeModel $node */
+					return $node->depth = 2;
 				}
 			],
 		];
