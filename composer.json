@@ -28,7 +28,8 @@
     "yiisoft/yii2": "^2.0.0",
     "yiisoft/yii2-bootstrap": "^2.0.0",
     "paulzi/yii2-materialized-path": "^2.0",
-    "bower-asset/jstree": "~3"
+    "bower-asset/jstree": "~3",
+    "kartik-v/yii2-dialog": "*"
   },
   "autoload": {
     "psr-4": {
