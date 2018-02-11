@@ -15,7 +15,7 @@ https://github.com/paulzi/yii2-nested-sets
 
 https://github.com/paulzi/yii2-nested-intervals
 
-How to use extension
+How to use this extension
 ==
 
 Добавляем в контроллер
