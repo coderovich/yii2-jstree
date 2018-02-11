@@ -1,5 +1,4 @@
 # jsTree Manager for Yii2
-
 Виджет для управления деревом для моделей Nested Tree.
 
 Набор Yii2 Behavior для хранения деревьев в БД и их совместного использования
@@ -16,7 +15,7 @@ https://github.com/paulzi/yii2-nested-sets
 
 https://github.com/paulzi/yii2-nested-intervals
 
-How to use
+How to use extension
 ==
 
 Добавляем в контроллер
