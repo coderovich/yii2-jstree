@@ -23,43 +23,42 @@ How to use this extension
 const NODE_NAME = "nodeName";
 # Your custom item renderer, named like get+self::NODE_NAME
 public function getNodeName() {
-		return "<strong>" . $this->name . "</strong>";
-	}
+    return "<strong>" . $this->name . "</strong>";
+}
 ```
 
 Добавляем в контроллер
 ```php
 public function actions() {
-		$modelClass = 'app\models\TreeModel';
-
-		return [
-			'moveNode'   => [
-				'class'      => 'coderovich\jsTree\actions\MoveNodeAction',
-				'modelClass' => $modelClass,
-			],
-			'deleteNode' => [
-				'class'      => 'coderovich\jsTree\actions\DeleteNodeAction',
-				'modelClass' => $modelClass,
-			],
-			'updateNode' => [
-				'class'      => 'coderovich\jsTree\actions\UpdateNodeAction',
-				'modelClass' => $modelClass,
-			],
-			'createNode' => [
-				'class'      => 'coderovich\jsTree\actions\CreateNodeAction',
-				'modelClass' => $modelClass,
-			],
-			'fetchTree'  => [
-				'class'      => 'coderovich\jsTree\actions\FetchTreeAction',
-				'modelClass' => $modelClass,
-				# Autoload items before this node level
-				"maxDepth"   => function ( $node ) {
-					/** @var \app\models\TreeModel $node */
-					return $node->depth = 1;
-				}
-			],
-		];
-	}
+    $modelClass = 'app\models\TreeModel';
+    return [
+        'moveNode'   => [
+            'class'      => 'coderovich\jsTree\actions\MoveNodeAction',
+            'modelClass' => $modelClass,
+        ],
+        'deleteNode' => [
+            'class'      => 'coderovich\jsTree\actions\DeleteNodeAction',
+            'modelClass' => $modelClass,
+        ],
+        'updateNode' => [
+            'class'      => 'coderovich\jsTree\actions\UpdateNodeAction',
+            'modelClass' => $modelClass,
+        ],
+        'createNode' => [
+            'class'      => 'coderovich\jsTree\actions\CreateNodeAction',
+            'modelClass' => $modelClass,
+        ],
+        'fetchTree'  => [
+            'class'      => 'coderovich\jsTree\actions\FetchTreeAction',
+            'modelClass' => $modelClass,
+            # Autoload items before this node level
+            "maxDepth"   => function ( $node ) {
+                /** @var \app\models\TreeModel $node */
+                return $node->depth = 1;
+            }
+        ],
+    ];
+}
 ```
 
 Добавляем в представление
