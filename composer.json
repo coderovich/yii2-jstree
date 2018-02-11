@@ -6,7 +6,8 @@
     "nested sets",
     "yii2",
     "nestable",
-    "editor"
+    "editor",
+    "materialized path"
   ],
   "homepage": "https://github.com/coderovich/yii2-jstree",
   "type": "yii2-widget",
@@ -25,7 +26,8 @@
   "require": {
     "php": ">=5.4.0",
     "yiisoft/yii2": "^2.0.0",
-    "yiisoft/yii2-bootstrap": "^2.0.0"
+    "yiisoft/yii2-bootstrap": "^2.0.0",
+    "paulzi/yii2-materialized-path": "^2.0"
   },
   "autoload": {
     "psr-4": {
