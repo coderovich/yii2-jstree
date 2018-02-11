@@ -2,10 +2,10 @@
 
 namespace coderovich\jsTree\actions;
 
+use paulzi\materializedPath\MaterializedPathQueryTrait;
 use Yii;
 use coderovich\jsTree\interfaces\TreeInterface;
 use yii\db\ActiveRecord;
-use yii\web\HttpException;
 use yii\web\Response;
 
 /**
@@ -16,16 +16,24 @@ class FetchTreeAction extends BaseAction {
 	private $_firstLevel = [];
 	public $maxDepth;
 
-	public function init() {
+    /**
+     * @var MaterializedPathQueryTrait
+     */
+    public $_model;
+
+    /**
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function init() {
 		parent::init();
 		$this->maxDepth = !is_callable($this->maxDepth)?(int) Yii::$app->getRequest()->get( 'maxDepth' ):$this->maxDepth;
 	}
 
-	/**
-	 * @return null
-	 * @throws HttpException
-	 */
-	public function run() {
+
+    /**
+     * @return array
+     */
+    public function run() {
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		/** @var TreeInterface|ActiveRecord $model */
 		$id             = Yii::$app->getRequest()->get( 'id' );
@@ -37,7 +45,7 @@ class FetchTreeAction extends BaseAction {
 				return $this->_firstLevel;
 			}
 		} else {
-			$node11            = $this->_model::findOne( [ "auto_list_id" => $id ] );
+			$node11            = $this->_model::findOne( $id );
 			$this->_firstLevel = $this->prepareItems( $node11 );
 			return $this->_firstLevel;
 		}
