@@ -52,10 +52,10 @@ public function actions() {
             'class'      => 'coderovich\jsTree\actions\FetchTreeAction',
             'modelClass' => $modelClass,
             # Максимально возможное число уровней в дереве. Опционально.
-            # Может быть callable или просто быть числом, если известно максимальное число уровней  
+            # Callable  
             "maxDepth"   => function ( $node ) {
                 /** @var \app\models\TreeModel $node */
-                return $node->depth = 1;
+                return $node->depth < 2;
             }
         ],
     ];
@@ -89,6 +89,20 @@ echo JsTree::widget([
     'plugins' => [ "changed", "state", 'types', 'dnd', 'contextmenu', 'sort' ,'wholerow'],
     //...
     ]); 
+```
+
+Измените вызов ActiveForm в _form.php
+```php
+<div class="region-form">
+	<?php $form = yii\widgets\ActiveForm::begin( [
+		"enableAjaxValidation"   => false,
+		"enableClientValidation" => true,
+		"options"                => [ "id"=>"JsTreeDialogForm",'role' => "form" ]
+	] );
+	?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?php ActiveForm::end(); ?>
+</div>
 ```
 
 Проблемы

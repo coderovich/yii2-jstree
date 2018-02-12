@@ -172,7 +172,7 @@ class JsTree extends Widget {
             
         });
     
-     $(document).on('keypress', '#DialogForm', function (e) {
+     $(document).on('keypress', '#JsTreeDialogForm', function (e) {
         if (e.which === 13) {
             e.preventDefault();
             $(".action-button").click();
@@ -228,7 +228,7 @@ function context (node) {
                         label: 'Сохранить',
                         cssClass: 'btn-primary action-button',
                         action: function (dialogItself) {
-                            var form = $("#DialogForm");
+                            var form = $("#JsTreeDialogForm");
                             $.ajax({
                                 type: "POST",
                                 dataType: "json",
@@ -271,7 +271,7 @@ function context (node) {
                         label: 'Сохранить',
                         cssClass: 'btn-primary action-button',
                         action: function (dialogItself) {
-                            var form = $("#DialogForm");
+                            var form = $("#JsTreeDialogForm");
                             $.ajax({
                                 type: "POST",
                                 dataType: "json",
