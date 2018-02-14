@@ -67,8 +67,6 @@ public function actions() {
 ```php
 use coderovich\jsTree\JsTree;
 
-987
-
 echo JsTree::widget([
     'modelClass' => '\app\models\TreeModel',
     'core'    => [
