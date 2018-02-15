@@ -18,7 +18,7 @@ https://github.com/paulzi/yii2-nested-intervals
 How to use this extension
 ==
 
-Добавляем в модель
+Добавить в модель
 ```php
 const NODE_NAME = "nodeName";
 # Your custom item renderer, named like get+self::NODE_NAME
@@ -27,7 +27,7 @@ public function getNodeName() {
 }
 ```
 
-Добавляем в контроллер
+Добавить в контроллер
 ```php
 public function actions() {
     $modelClass = 'app\models\TreeModel';
@@ -62,7 +62,7 @@ public function actions() {
 }
 ```
 
-Добавляем в представление
+Добавить в представление
 
 ```php
 use coderovich\jsTree\JsTree;
@@ -92,7 +92,7 @@ echo JsTree::widget([
     ]); 
 ```
 
-Измените вызов ActiveForm в _form.php
+Изменить вызов ActiveForm в _form.php
 ```php
 <div class="region-form">
 	<?php $form = yii\widgets\ActiveForm::begin( [

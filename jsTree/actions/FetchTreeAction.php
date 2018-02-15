@@ -34,22 +34,26 @@ class FetchTreeAction extends BaseAction {
      * @return array
      */
     public function run() {
-		Yii::$app->response->format = Response::FORMAT_JSON;
-		/** @var TreeInterface|ActiveRecord $model */
-		$id             = Yii::$app->getRequest()->get( 'id' );
-		if ( $id == "#" ) {
-			$rootNodes = $this->_model::find()->roots()->all();
-			if ( ! empty( $rootNodes[0] ) ) {
-				/** @var ActiveRecord|TreeInterface $items */
-				$this->_firstLevel = $this->prepareItems( $rootNodes[0] );
-				return $this->_firstLevel;
-			}
-		} else {
-			$node11            = $this->_model::findOne( $id );
-			$this->_firstLevel = $this->prepareItems( $node11 );
-			return $this->_firstLevel;
-		}
-	}
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        /** @var TreeInterface|ActiveRecord $model */
+        $model = $this->_model;
+
+        $id             = Yii::$app->getRequest()->get( 'id' );
+
+        if ( $id == "#" ) {
+
+            $rootNodes = $model::find()->roots()->all();
+            if ( ! empty( $rootNodes[0] ) ) {
+                /** @var ActiveRecord|TreeInterface $items */
+                $this->_firstLevel = $this->prepareItems( $rootNodes[0] );
+                return $this->_firstLevel;
+            }
+        } else {
+            $node11            = $model::findOne( $id );
+            $this->_firstLevel = $this->prepareItems( $node11 );
+            return $this->_firstLevel;
+        }
+    }
 
 	/**
 	 * @param ActiveRecord|TreeInterface[] $node
@@ -65,16 +69,17 @@ class FetchTreeAction extends BaseAction {
 	 *
 	 * @return array
 	 */
-	protected function getNode( $node ) {
-		$items = [];
-		/** @var ActiveRecord[]|TreeInterface[] $children */
-		$children = $node->children;
-		foreach ( $children as $n => $node ) {
-			$items[ $n ]['id']       = $node->getPrimaryKey();
-			$items[ $n ]['text']     = $node->{$this->_model::NODE_NAME};
-			$items[ $n ]['children'] = is_callable($this->maxDepth)?call_user_func($this->maxDepth,$node):($node->depth < $this->maxDepth || !$this->maxDepth ?: false);
-		}
+    protected function getNode( $node ) {
+        $items = [];
+        $model = $this->_model;
+        /** @var ActiveRecord[]|TreeInterface[] $children */
+        $children = $node->children;
+        foreach ( $children as $n => $node ) {
+            $items[ $n ]['id']       = $node->getPrimaryKey();
+            $items[ $n ]['text']     = $node->{$model::NODE_NAME};
+            $items[ $n ]['children'] = is_callable($this->maxDepth)?call_user_func($this->maxDepth,$node):($node->depth < $this->maxDepth || !$this->maxDepth ?: false);
+        }
 
-		return $items;
-	}
+        return $items;
+    }
 }
