@@ -64,6 +64,8 @@ public function actions() {
 
 Добавить в представление
 
+New line
+
 ```php
 use coderovich\jsTree\JsTree;
 
