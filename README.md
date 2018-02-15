@@ -63,14 +63,8 @@ public function actions() {
 ```
 
 Добавить в представление
-
-New line
-3546563
-
 ```php
 use coderovich\jsTree\JsTree;
-
-jbkj
 
 echo JsTree::widget([
     'modelClass' => '\app\models\TreeModel',
