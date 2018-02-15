@@ -69,6 +69,8 @@ use coderovich\jsTree\JsTree;
 
 jbkj
 
+52156
+
 echo JsTree::widget([
     'modelClass' => '\app\models\TreeModel',
     'core'    => [
