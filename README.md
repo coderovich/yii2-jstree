@@ -70,6 +70,8 @@ New line
 ```php
 use coderovich\jsTree\JsTree;
 
+jbkj
+
 echo JsTree::widget([
     'modelClass' => '\app\models\TreeModel',
     'core'    => [
